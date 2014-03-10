@@ -2,8 +2,8 @@ var app = angular.module('LilyApp', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
-    controller: 'HomeController',
-    templateUrl: 'views/home.html'
+    controller: 'ListingCtrl',
+    templateUrl: 'views/listing.html'
   })
   .otherwise({redirectTo: '/'});
 }]);
