@@ -1,0 +1,33 @@
+{
+  "name": "scaffold",
+  "description": "javascript mv* scaffold",
+  "version": "0.0.1",
+  "author": "Jason Hamm <jhamm.business@gmail.com>",
+  "engines": {
+    "node": ">= 10.0"
+  },
+  "maintainers": [
+    {
+      "name": "Jason Hamm",
+      "e-mail": "jhamm.business@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "grunt-express": "~1.2.1"
+  },
+  "devDependencies": {
+    "matchdep": "latest",
+    "grunt-cli": "latest",
+    "grunt": "latest",
+    "grunt-contrib-connect": "0.4.1",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-open": "latest",
+    "grunt-contrib-less": "~0.8.1",
+    "grunt-connect-proxy": "~0.1.6",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
+  }
+}

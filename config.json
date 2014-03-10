@@ -1,0 +1,12 @@
+{
+  "server": {
+    "port": 9999,
+    "proxy": {
+      "context": "/v3",
+      "host": "localhost",
+      "port": 8280
+    }
+  },
+
+  "environment": "offline"
+}
