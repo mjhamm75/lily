@@ -1,7 +1,7 @@
 var app = angular.module('LilyApp', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
+  $routeProvider.when('/', {
     controller: 'ListingCtrl',
     templateUrl: 'templates/listing.html'
   })
