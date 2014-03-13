@@ -1,5 +1,7 @@
-gruntfile
+lily
 =========
+
+<p>Angular app</p>
 
 
 ## Grunt Setup
