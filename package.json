@@ -12,9 +12,6 @@
       "e-mail": "jhamm.business@gmail.com"
     }
   ],
-  "dependencies": {
-    "grunt-express": "~1.2.1"
-  },
   "devDependencies": {
     "matchdep": "latest",
     "grunt-cli": "latest",
@@ -22,6 +19,7 @@
     "grunt-contrib-connect": "0.4.1",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-jshint": "latest",
+    "grunt-nodemon": "~0.2.1",
     "grunt-open": "latest",
     "grunt-contrib-less": "~0.8.1",
     "grunt-connect-proxy": "~0.1.6",

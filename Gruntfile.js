@@ -82,6 +82,11 @@ module.exports = function(grunt) {
         }
       }
     },
+    nodemon: {
+      dev: {
+        script: 'server/server.js'
+      }
+    },
     open: {
       dev : {
         url: 'http://localhost:9000/app'
@@ -120,6 +125,7 @@ module.exports = function(grunt) {
       'configureProxies:server',
       'connect:staticserver',
       'connect:server',
+      'nodemon',
       'watch'
     ]);
   grunt.registerTask('build', [
