@@ -1,10 +1,13 @@
 var express = require('express');
 var port = process.env.PORT || 9000;
+var scouts = require('./routes/scouts.js');
 
 var app = express();
 
-app.get('*', function(request, response) {
-    response.send("This would be some more HTML");
+app.get('/', scouts.getScouts);
+
+app.get('*', function(req, res) {
+    res.send("This would be some more HTML");
 });
 
 app.listen(port, function() {
