@@ -13,8 +13,8 @@ module.exports = function(grunt) {
       js: ['app/js/**/*.js', '!app/js/libs/**/*.js'],
       jshint: ['Gruntfile.js','app/js/**/*.js','!app/js/libs/**/*.js'],
       html: ['app/index.html'],
-      css: ['app/styles/**/*.css'],
-      less: ['app/styles/**/*.less'],
+      css: ['app/css/*.css'],
+      less: ['app/less/*.less'],
       tests: ['test/**/*.js'],
       dist: 'dist'
     },
