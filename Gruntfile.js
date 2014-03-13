@@ -62,9 +62,6 @@ module.exports = function(grunt) {
         ]
       }
     },
-    express: {
-
-    },
     hbs: {
       templateExtension : 'hbs'
     },
