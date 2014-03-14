@@ -7,7 +7,7 @@
 var Bookshelf = require('bookshelf').PG;
 
 var Scout = Bookshelf.Model.extend({
-  tablename: 'scouts'
+  tableName: 'scouts'
 });
 
 var Scouts = Bookshelf.Collection.extend({
@@ -15,7 +15,9 @@ var Scouts = Bookshelf.Collection.extend({
 });
 
 exports.getScouts = function(req, res) {
-  Scouts.fetch().then(function(collection) {
-    console.log(collection);
+  var scout = new Scouts();
+  console.log(scout);
+  scout.fetch().then(function(collection) {
+    res.json(collection);
   });
 };
