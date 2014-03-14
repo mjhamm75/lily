@@ -4,7 +4,7 @@ var scouts = require('./routes/scouts.js');
 
 var app = express();
 
-app.get('/', scouts.getScouts);
+app.get('/users', scouts.getScouts);
 
 app.get('*', function(req, res) {
     res.send("This would be some more HTML");
