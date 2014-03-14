@@ -1,5 +1,7 @@
-gruntfile
+lily
 =========
+
+<p>Angular app</p>
 
 
 ## Grunt Setup
@@ -47,3 +49,7 @@ gruntfile
 
 <p>Any of the files that are changed will cause the page to be refreshed.  If a less file is changed, then it will be processed into css and
  then the page will be refreshed.  When any of the js files are changed, the file will be linted and then the page will be refreshed.</p>
+ 
+##### Express server
+--------------------
+<p>There is an express server running on port 9000.  Nodemon is running the express server and is configured in the Gruntfile.</p>
