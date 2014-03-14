@@ -1,0 +1,5 @@
+INSERT INTO scouts(firstName, lastName, rank, email, password, address, city, state, zip) VALUES ('Jason', 'Hamm', 'Star', 'jhamm.business@gmail.com', 'password', '190 Wetzel Lane', 'Brunswick', 'GA', '31523');
+INSERT INTO scouts(firstName, lastName, rank, email, password, address, city, state, zip) VALUES ('Jack', 'Johson', 'Life', 'jack@johnson.com', 'password', '111 Main Street', 'Brunswick', 'GA', '31523');
+INSERT INTO scouts(firstName, lastName, rank, email, password, address, city, state, zip) VALUES ('Eric', 'Clapton', 'Tenderfoot', 'eric@clapton.com', 'password', '333 Myers Hill Road', 'Brunswick', 'GA', '31523');
+INSERT INTO scouts(firstName, lastName, rank, email, password, address, city, state, zip) VALUES ('Tristan', 'McGraw', 'Life', 'tristan@mcgraw.com', 'password', '444 South Port Boulevard', 'Brunswick', 'GA', '31523');
+INSERT INTO scouts(firstName, lastName, rank, email, password, address, city, state, zip) VALUES ('Kaleck', 'Hamm', 'First Class', 'kaleck@hamm.com', 'password', '555 Buck Swamp Road', 'Brunswick', 'GA', '31523');

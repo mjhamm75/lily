@@ -1,0 +1,15 @@
+To connect to postgres
+psql lily
+
+To create a database
+create database <name>;
+
+Show tables
+\dt
+
+Describe table
+\d+ <tablename>
+\d <tablename>
+
+Drop table
+drop table <tablename>
