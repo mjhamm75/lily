@@ -7,6 +7,9 @@ create database <name>;
 Show tables
 \dt
 
+Show users
+\du
+
 Describe table
 \d+ <tablename>
 \d <tablename>
