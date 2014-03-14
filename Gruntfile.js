@@ -48,11 +48,11 @@ module.exports = function(grunt) {
         proxies: [
           {
             context: '/users',
-            host: '99.44.242.76',
+            host: 'localhost',
             port: 9000,
-            rewrite: {
-              '/users': '/users.json'
-            }
+            // rewrite: {
+            //   '/users': '/users'
+            // }
           },
           {
             context: '/',
