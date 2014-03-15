@@ -1,16 +1,5 @@
-app.controller('ListingCtrl', function($scope) {
-  $scope.scouts = [
-    {
-      "name": "Jason Hamm",
-      "rank": "Tenderfoot"
-    },
-    {
-      "name": "Whitney Palmer",
-      "rank": "Star"
-    },
-    {
-      "name": "Tristan McGraw",
-      "rank": "Life"
-    }
-  ]
+app.controller('ListingCtrl', function($scope, scoutService) {
+  scoutService.get({}, function(data) {
+    $scope.scouts = data.scouts;
+  });
 });
