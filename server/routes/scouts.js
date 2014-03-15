@@ -18,6 +18,10 @@ exports.getScouts = function(req, res) {
   var scout = new Scouts();
   console.log(scout);
   scout.fetch().then(function(collection) {
-    res.json(collection);
+    var response = {
+      meta: {},
+      scouts: collection
+    };
+    res.json(response);
   });
 };
