@@ -14,7 +14,7 @@ CREATE TABLE scouts
   zip                 varchar(10)
 );
 
-CEATE TYPE advancement_type AS ENUM('Rank', 'Merit Badge');
+CREATE TYPE advancement_type AS ENUM('Rank', 'Merit Badge');
 
 CREATE TABLE advancements
 (
@@ -27,7 +27,7 @@ CREATE TABLE advancements
 CREATE TABLE scout_advancements
 (
   scout_id    integer references scouts (scout_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  advancement_id    integer references advancements (advancement_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  advancement_id    integer references advancements (advancement_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE requirements
