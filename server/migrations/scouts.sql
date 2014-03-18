@@ -19,7 +19,7 @@ CREATE TYPE advancement_type AS ENUM('Rank', 'Merit Badge');
 CREATE TABLE advancements
 (
   advancement_id  serial primary key,
-  name                  varchar(12),
+  name                  varchar(30),
   eagle_required     boolean,
   type                    advancement_type
 );
