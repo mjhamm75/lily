@@ -25,3 +25,20 @@ exports.getScouts = function(req, res) {
     res.json(response);
   });
 };
+
+exports.createScout = function(req, res) {
+  console.log(req);
+  var scout = new Scout();
+  scout.set('first_name', req.body.firstName);
+  scout.set('last_name', req.body.lastName);
+  scout.set('rank', req.body.rank);
+  scout.set('email', req.body.email);
+  scout.set('password', req.body.password);
+  scout.set('address', req.body.address);
+  scout.set('city', req.body.city);
+  scout.set('state', req.body.state);
+  scout.set('zip', req.body.zip);
+  scout.save().then(function(data) {
+    res.json(data);
+  });
+};
