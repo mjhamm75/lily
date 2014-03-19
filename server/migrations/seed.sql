@@ -150,49 +150,49 @@ INSERT INTO advancements(name, eagle_required, type) VALUES
 
 
 INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Boy Scout')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Tenderfoot')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Second Class')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'First Class')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Star')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Life')),
-    (1, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Eagle'));
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Boy Scout')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Tenderfoot')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Second Class')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'First Class')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Star')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Life')),
+    (1, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Boy Scout')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Tenderfoot')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Second Class')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'First Class')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Star')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Life')),
-    (2, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Eagle'));
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Boy Scout')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Tenderfoot')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Second Class')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'First Class')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Star')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Life')),
+    (2, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Boy Scout')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Tenderfoot')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Second Class')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'First Class')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Star')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Life')),
-    (3, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Eagle'));
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Boy Scout')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Tenderfoot')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Second Class')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'First Class')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Star')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Life')),
+    (3, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Boy Scout')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Tenderfoot')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Second Class')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'First Class')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Star')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Life')),
-    (4, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Eagle'));
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Boy Scout')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Tenderfoot')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Second Class')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'First Class')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Star')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Life')),
+    (4, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Boy Scout')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Tenderfoot')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Second Class')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'First Class')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Star')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Life')),
-    (5, (SELECT advancements.advancement_id FROM advancements WHERE advancements.name = 'Eagle'));
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Boy Scout')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Tenderfoot')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Second Class')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'First Class')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Star')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Life')),
+    (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 
 
