@@ -1,9 +1,3 @@
-// var getScouts = module.exports = function(req, res) {
-//   'use strict';
-
-//   res.json({ hello: 'world' });
-// };
-
 var Bookshelf = require('bookshelf').PG;
 
 var Scout = Bookshelf.Model.extend({
@@ -16,7 +10,6 @@ var Scouts = Bookshelf.Collection.extend({
 
 exports.getScouts = function(req, res) {
   var scout = new Scouts();
-  console.log(scout);
   scout.fetch().then(function(collection) {
     var response = {
       meta: {},
@@ -27,10 +20,9 @@ exports.getScouts = function(req, res) {
 };
 
 exports.createScout = function(req, res) {
-  console.log(req);
   var scout = new Scout();
-  scout.set('first_name', req.body.firstName);
-  scout.set('last_name', req.body.lastName);
+  scout.set('first_name', req.body.first_name);
+  scout.set('last_name', req.body.last_name);
   scout.set('rank', req.body.rank);
   scout.set('email', req.body.email);
   scout.set('password', req.body.password);
