@@ -1,8 +1,8 @@
-CREATE TYPE rank AS ENUM('Boy Scout', 'Tenderfoot', 'Second Class', 'First Class', 'Star', 'Life', 'Eagle');
+CREATE TYPE public.rank AS ENUM('Boy Scout', 'Tenderfoot', 'Second Class', 'First Class', 'Star', 'Life', 'Eagle');
 
-CREATE TABLE scouts
+CREATE TABLE public.scouts
 (
-  scout_id          serial primary key,
+  id          serial primary key,
   first_name      varchar(75) NOT NULL,
   last_name       varchar(75) NOT NULL,
   rank              rank,
@@ -14,35 +14,35 @@ CREATE TABLE scouts
   zip                 varchar(10)
 );
 
-CREATE TYPE advancement_type AS ENUM('Rank', 'Merit Badge');
+CREATE TYPE public.advancement_type AS ENUM('Rank', 'Merit Badge');
 
-CREATE TABLE advancements
+CREATE TABLE public.advancements
 (
-  advancement_id  serial primary key,
+  id  serial primary key,
   name                  varchar(30),
   eagle_required     boolean,
   type                    advancement_type
 );
 
-CREATE TABLE scout_advancements
+CREATE TABLE public.scout_advancements
 (
-  scout_id    integer references scouts (scout_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  advancement_id    integer references advancements (advancement_id) ON UPDATE CASCADE ON DELETE CASCADE
+  scout_id    integer references scouts (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  advancement_id    integer references advancements (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE requirements
+CREATE TABLE public.requirements
 (
-  requirement_id  serial primary key
+  id  serial primary key
 );
 
-CREATE TABLE advancement_requirements
+CREATE TABLE public.advancement_requirements
 (
-  advancement_id    integer references advancements (advancement_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  requirement_id    integer references requirements (requirement_id) ON UPDATE CASCADE ON DELETE CASCADE
+  advancement_id    integer references advancements (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  requirement_id    integer references requirements (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE scout_requirements
+CREATE TABLE public.scout_requirements
 (
-  scout_id    integer references scouts (scout_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  requirement_id    integer references requirements (requirement_id) ON UPDATE CASCADE ON DELETE CASCADE
+  scout_id    integer references scouts (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  requirement_id    integer references requirements (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
