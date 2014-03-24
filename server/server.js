@@ -6,6 +6,7 @@ var scouts = require('./routes/scouts.js');
 var app = express();
 app.use(express.bodyParser());
 
+app.get('/scouts/:id', scouts.getScout);
 app.get('/scouts', scouts.getScouts);
 app.post('/scouts', scouts.createScout);
 

@@ -8,6 +8,15 @@ var Scouts = Bookshelf.Collection.extend({
   model: Scout
 });
 
+exports.getScout = function(req, res) {
+  var scout = new Scout();
+  scout.fetch({
+    id: req.params.id
+  }).then(function(data) {
+    res.json(data);
+  });
+};
+
 exports.getScouts = function(req, res) {
   var scout = new Scouts();
   scout.fetch().then(function(collection) {
