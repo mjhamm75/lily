@@ -1,4 +1,7 @@
 app.factory('scoutService', function($resource) {
-  return $resource('../scouts/:scoutId', {scoutId: '@scoutId'}, {
-  });
+  return {
+    scout: undefined,
+    getResource: $resource('../scouts/:scoutId', {scoutId: '@scoutId'}, {
+    })
+  };
 });

@@ -1,1 +1,9 @@
-<h1>This is a single scout page</h1>
+<div ng-switch on="scoutValid">
+  <div ng-switch-when="true">
+    <h1>Not a valid scout</h1>
+  </div>
+  <div ng-switch-default>
+    <h1>This is a single scout page</h1>
+    <div>{{scout.first_name}} {{scout.last_name}}</div>
+  </div>
+</div>

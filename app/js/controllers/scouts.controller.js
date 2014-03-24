@@ -1,10 +1,23 @@
-app.controller('ScoutsCtrl', function($scope, $location, scoutService) {
-  scoutService.get({}, function(data) {
+app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService) {
+  scoutService.getResource.get({}, function(data) {
     $scope.scouts = data.scouts;
   });
 
+  $scope.scout = scoutService.scout;
+
+  if($routeParams.id && scoutService.scout === undefined) {
+    scoutService.getResource.get({
+      scoutId: $routeParams.id
+    }, function(data) {
+      $scope.scout = data;
+    });
+  }
+
   $scope.showScout = function(scout) {
-    // I dont understand why I need this ugly hack with the empty ''
-    $location.path('' + scout.id);
+    if(scout.id) {
+      scoutService.scout = scout;
+      // I dont understand why I need this ugly hack with the empty ''
+      $location.path('' + scout.id);
+    }
   };
 });
