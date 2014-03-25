@@ -9,10 +9,9 @@ var Scouts = Bookshelf.Collection.extend({
 });
 
 exports.getScout = function(req, res) {
-  var scout = new Scout();
-  scout.fetch({
-    id: req.params.id
-  }).then(function(data) {
+  var scout = new Scout({id: req.params.id});
+  scout.fetch().then(function(data) {
+    console.log(data);
     res.json(data);
   });
 };
