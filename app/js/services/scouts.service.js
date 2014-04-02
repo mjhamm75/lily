@@ -9,15 +9,28 @@ app.factory('scoutService', function($resource, $q) {
     getScouts: function() {
       var deferred = $q.defer();
       var that = this;
-      if(this.scouts.length === 0) {
-        this._getResource.get({}, function(data) {
+      if(that.scouts.length === 0) {
+        that._getResource.get({}, function(data) {
           that.scouts = data.scouts;
           deferred.resolve(that.scouts);
         });
-        return deferred.promise;
       } else {
-        return that.scouts;
+        deferred.resolve(that.scouts);
       }
+      return deferred.promise;
+    },
+    getScout: function(id) {
+      var deferred = $q.defer();
+      var that = this;
+      if(that.scout === undefined || that.scout.id !== id) {
+        that._getResource.get({scoutId: id}, function(data) {
+          that.scout = data;
+          deferred.resolve(that.scout);
+        });
+      } else {
+        deferred.resolve(that.scout);
+      }
+      return deferred.promise;
     }
   };
 });

@@ -1,16 +1,15 @@
 /* global app */
 
 app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService) {
-  scoutService.getScouts().then(function(data) {
+  var prom = scoutService.getScouts();
+  prom.then(function(data) {
     $scope.scouts = data;
   });
 
   $scope.scout = scoutService.scout;
 
   if($routeParams.id && scoutService.scout === undefined) {
-    scoutService.getResource.get({
-      scoutId: $routeParams.id
-    }, function(data) {
+    scoutService.getScout($routeParams.id).then(function(data) {
       $scope.scout = data;
     });
   }
