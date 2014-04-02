@@ -1,3 +1,5 @@
+/* global app */
+
 app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService) {
   scoutService.getResource.get({}, function(data) {
     $scope.scouts = data.scouts;
