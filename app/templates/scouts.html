@@ -1,16 +1,18 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Rank</th>
-      <th>DOB</th>
-    </tr>
-  </thead>
-    <tbody>
-      <tr ng-click="showScout(scout)" ng-repeat="scout in scouts">
-        <td>{{scout.first_name}} {{scout.last_name}}</td>
-        <td>{{scout.rank}}</td>
-        <td>{{scout.city}}</td>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>DOB</th>
       </tr>
-    </tbody>
-</table>
+    </thead>
+      <tbody>
+        <tr ng-click="showScout(scout)" ng-repeat="scout in scouts">
+          <td>{{scout.first_name}} {{scout.last_name}}</td>
+          <td>{{scout.rank}}</td>
+          <td>{{scout.city}}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>
