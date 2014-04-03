@@ -1,18 +1,64 @@
+/* global exports*/
+
 var Bookshelf = require('bookshelf').PG;
+var _ = require('underscore');
+
+var Advancement = Bookshelf.Model.extend({
+  tableName: 'advancements'
+});
 
 var Scout = Bookshelf.Model.extend({
-  tableName: 'scouts'
+  tableName: 'scouts',
+
+  advancements: function() {
+    return this.belongsToMany(Advancement, 'scout_advancements', 'scout_id', 'advancement_id');
+  }
 });
 
 var Scouts = Bookshelf.Collection.extend({
   model: Scout
 });
 
+
+var Advancements = Bookshelf.Model.extend({
+  model: Advancement
+});
+
+var organizeScoutJson = function(json) {
+  json = json.toJSON();
+  var ranks = _.chain(json.advancements)
+    .filter(function(advancement) {
+      return advancement.type === 'Rank'
+    })
+    .map(function(r) {
+      delete r._pivot_scout_id;
+      delete r._pivot_advancement_id;
+      return r;
+    })
+    .value();
+  var merit_badges = _.chain(json.advancements)
+    .filter(function(advancement) {
+      return advancement.type === 'Merit Badge'
+    })
+    .map(function(r) {
+      delete r._pivot_scout_id;
+      delete r._pivot_advancement_id;
+      return r;
+    })
+    .value();
+  delete json.advancements;
+  json.ranks = ranks;
+  json.merit_badges = merit_badges;
+  return json;
+};
+
 exports.getScout = function(req, res) {
   var scout = new Scout({id: req.params.id});
-  scout.fetch().then(function(data) {
-    console.log(data);
-    res.json(data);
+  scout.fetch({
+    withRelated: ['advancements']
+  }).then(function(data) {
+    var j = organizeScoutJson(data);
+    res.json(j);
   });
 };
 
