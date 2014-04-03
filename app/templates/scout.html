@@ -1,7 +1,50 @@
 <div class="container" ng-switch on="scoutValid">
   <div ng-switch-when="true">
-    <h1>This is a single scout page</h1>
-    <div>{{scout.first_name}} {{scout.last_name}}</div>
+    <h3 class="text-muted">{{scout.first_name}} {{scout.last_name}}</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>
+            Rank
+          </th>
+          <th>
+            Completed
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="rank in scout.ranks">
+          <td>
+            {{rank.name}}
+          </td>
+          <td>
+            Date
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>
+            Merit Badge
+          </th>
+          <th>
+            Completed
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="merit_badge in scout.merit_badges">
+          <td>
+            {{rank.name}}
+          </td>
+          <td>
+            Date
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div ng-switch-default>
     <div class="alert alert-info">
