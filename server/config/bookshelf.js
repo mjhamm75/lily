@@ -7,5 +7,6 @@ Bookshelf.PG = Bookshelf.initialize({
     password : 'lily',
     database : 'lily',
     charset  : 'utf8'
-  }
+  },
+  debug: true
 });
