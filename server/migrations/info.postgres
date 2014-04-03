@@ -16,3 +16,6 @@ Describe table
 
 Drop table
 drop table <tablename>
+
+Grant table permissions
+Grant all privileges on table <table_name> to <user_name>;
