@@ -4,14 +4,14 @@
       <tr>
         <th>Name</th>
         <th>Rank</th>
-        <th>DOB</th>
+        <th>Full Detail</th>
       </tr>
     </thead>
       <tbody>
-        <tr ng-click="showScout(scout)" ng-repeat="scout in scouts">
+        <tr ng-click="showScout(scout)" ng-dblclick="showFullDetail(scout)" ng-repeat="scout in scouts">
           <td>{{scout.first_name}} {{scout.last_name}}</td>
           <td>{{scout.rank}}</td>
-          <td>{{scout.city}}</td>
+          <td><button class="btn" ng-click="showFullDetail(scout, $event)">Full Detail</button></td>
         </tr>
       </tbody>
   </table>
