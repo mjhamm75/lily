@@ -1,1 +1,31 @@
-<h1>Advancement</h1>
+<div class="container">
+  <h1>{{advancement.name}}</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          #
+        </th>
+        <th>
+          Requirement
+        </th>
+        <th>
+          Completed
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="req in requirements">
+        <td>
+          {{}}
+        </td>
+        <td>
+          {{req.description}}
+        </td>
+        <td>
+          {{req.completed}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
