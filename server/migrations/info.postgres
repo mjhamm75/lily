@@ -19,3 +19,10 @@ drop table <tablename>
 
 Grant table permissions
 Grant all privileges on table <table_name> to <user_name>;
+
+
+ALTER ROLE <rolename> WITH LOGIN;
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO <username>;
