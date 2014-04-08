@@ -55,6 +55,11 @@ module.exports = function(grunt) {
             // }
           },
           {
+            context: '/advancements',
+            host: 'localhost',
+            port: 9000
+          },
+          {
             context: '/',
             host: 'localhost',
             port: 8001
