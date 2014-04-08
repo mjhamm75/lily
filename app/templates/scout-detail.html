@@ -1,3 +1,48 @@
 <div class="container">
   <h4>{{scout.first_name}} {{scout.last_name}}</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Rank
+        </th>
+        <th>
+          Percent Remaining
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="rank in scout.ranks">
+        <td>
+          {{rank.name}}
+        </td>
+        <td>
+          25%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Merit Badge
+        </th>
+        <th>
+          Percent Remaining
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="badge in scout.merit_badges">
+        <td>
+          {{badge.name}}
+        </td>
+        <td>
+          50%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
