@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/scout-detail.html'
   })
   .when('/advancement/:id', {
-    controller: 'ScoutsCtrl',
+    controller: 'AdvancementsCtrl',
     templateUrl: 'templates/advancement-detail.html'
   })
   .otherwise({redirectTo: '/'});
