@@ -1,8 +1,7 @@
 /* global app */
 
 app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService) {
-  var prom = scoutService.getScouts();
-  prom.then(function(data) {
+  scoutService.getScouts().then(function(data) {
     $scope.scouts = data;
   });
 
