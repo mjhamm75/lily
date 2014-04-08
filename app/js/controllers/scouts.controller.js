@@ -17,11 +17,22 @@ app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutServ
     });
   }
 
-  $scope.showScout = function(scout) {
-    if(scout.id) {
-      scoutService.scout = scout;
-      // I dont understand why I need this ugly hack with the empty ''
-      $location.path('' + scout.id);
+  $scope.showFullDetail = function(scout, $event) {
+    scoutService.getScout(scout.id).then(function(data) {
+      $scope.scout = scoutService.scout = data;
+    });
+    $location.path('' + scout.id + '/detail');
+  };
+
+  $scope.showScout = function(scout, $event) {
+    if($event !== undefined) {
+      if(scout.id) {
+        scoutService.scout = scout;
+        // I dont understand why I need this ugly hack with the empty ''
+        $location.path('' + scout.id);
+      }
     }
   };
+
+  $scope.oneAtATime = true;
 });
