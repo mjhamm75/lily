@@ -1,4 +1,4 @@
-var app = angular.module('LilyApp', ['ngRoute', 'ngResource']);
+var app = angular.module('LilyApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -9,6 +9,10 @@ app.config(['$routeProvider', function($routeProvider) {
   .when('/:id', {
     controller: 'ScoutsCtrl',
     templateUrl: 'templates/scout.html'
+  })
+  .when('/:id/detail', {
+    controller: 'ScoutsCtrl',
+    templateUrl: 'templates/scout-detail.html'
   })
   .otherwise({redirectTo: '/'});
 }]);
