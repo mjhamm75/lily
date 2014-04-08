@@ -14,5 +14,9 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'ScoutsCtrl',
     templateUrl: 'templates/scout-detail.html'
   })
+  .when('/advancement/:id', {
+    controller: 'ScoutsCtrl',
+    templateUrl: 'templates/advancement-detail.html'
+  })
   .otherwise({redirectTo: '/'});
 }]);
