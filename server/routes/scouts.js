@@ -57,8 +57,9 @@ exports.getScout = function(req, res) {
   scout.fetch({
     withRelated: ['advancements']
   }).then(function(data) {
-    var j = organizeScoutJson(data);
-    res.json(j);
+    var result = organizeScoutJson(data);
+    console.log(result);
+    res.json(result);
   });
 };
 
