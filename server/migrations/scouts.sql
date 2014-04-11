@@ -40,18 +40,24 @@ CREATE TABLE public.requirements
   internal_id     integer unique
 );
 
+CREATE TABLE public.completed
+(
+  id              serial primary key,
+  initials        varchar(5),
+  completed_date  date
+)
+
 CREATE TABLE public.advancement_requirements
 (
   advancement_id  integer references advancements (id) ON UPDATE CASCADE ON DELETE CASCADE,
   requirement_id  integer references requirements (id) ON UPDATE CASCADE ON DELETE CASCADE,
-  completed       date
 );
 
 CREATE TABLE public.scout_requirements
 (
   scout_id        integer references scouts (id) ON UPDATE CASCADE ON DELETE CASCADE,
   requirement_id  integer references requirements (id) ON UPDATE CASCADE ON DELETE CASCADE,
-  completed       date
+  completed_id    integer references completed (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- select advancements.name from advancements, scout_advancements, scouts
