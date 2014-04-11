@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="rank in scout.ranks">
+      <tr ng-click="showAdvancementDetail(rank)" ng-repeat="rank in scout.ranks">
         <td>
           {{rank.name}}
         </td>
@@ -34,7 +34,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="badge in scout.merit_badges">
+      <tr ng-click="showAdvancementDetail(badge)" ng-repeat="badge in scout.merit_badges">
         <td>
           {{badge.name}}
         </td>
