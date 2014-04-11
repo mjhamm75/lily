@@ -18,7 +18,9 @@ exports.getAdvancement = function(req, res) {
         return r;
       });
       var result = {
-        meta: {},
+        meta: {
+          count: requirements.length
+        },
         requirements: requirements
       };
       res.json(result);
