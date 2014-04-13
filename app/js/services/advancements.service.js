@@ -4,6 +4,9 @@ app.factory('advancementService', function($resource, $q) {
   return {
     advancement: undefined,
     _getResource: $resource('../advancements/:advancementId', {advancementId: '@advancementId'}, {
+      get: {
+        isArray: true
+      }
     }),
     getAdvancement: function(id) {
       var deferred = $q.defer();
