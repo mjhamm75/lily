@@ -60,6 +60,11 @@ module.exports = function(grunt) {
             port: 9000
           },
           {
+            context: '/requirements',
+            host: 'localhost',
+            port: 9000
+          },
+          {
             context: '/',
             host: 'localhost',
             port: 8001
