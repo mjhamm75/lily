@@ -14,7 +14,7 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'ScoutsCtrl',
     templateUrl: 'templates/scout-detail.html'
   })
-  .when('/advancement/:id', {
+  .when('/:scoutId/advancements/:id', {
     controller: 'AdvancementsCtrl',
     templateUrl: 'templates/advancement-detail.html'
   })
