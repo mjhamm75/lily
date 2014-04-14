@@ -15,15 +15,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="req in advancement.requirements track by $index">
+      <tr ng-click="completeRequirement(a)" ng-repeat="a in advancement track by $index">
         <td>
           {{}}
         </td>
         <td>
-          {{req.description}}
+          {{a.description}}
         </td>
         <td>
-<!--           {{req.completed}} -->
+          <div ng-if="a.completed_date">
+            <span class="glyphicon glyphicon-ok ok"></span>
+          </div>
+          <div ng-if="a.completed_date === null">
+            <span ></span>
+          </div>
         </td>
       </tr>
     </tbody>
