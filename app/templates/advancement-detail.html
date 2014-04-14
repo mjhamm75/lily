@@ -15,9 +15,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-click="completeRequirement(a)" ng-repeat="a in advancement track by $index">
+      <tr ng-click="completeRequirement(a)" ng-repeat="a in advancement track by $index | orderBy:req_order">
         <td>
-          {{}}
+          {{a.req_number}}
         </td>
         <td>
           {{a.description}}
