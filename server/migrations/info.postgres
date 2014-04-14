@@ -26,3 +26,6 @@ ALTER ROLE <rolename> WITH LOGIN;
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
 TO <username>;
+
+Grant sequence permission
+GRANT USAGE ON SEQUENCE <sequence_name> TO <user_name>;
