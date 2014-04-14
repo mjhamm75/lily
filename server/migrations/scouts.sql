@@ -44,6 +44,10 @@ CREATE TABLE public.advancement_requirements
 (
   advancement_id  integer references advancements (id) ON UPDATE CASCADE ON DELETE CASCADE,
   requirement_id  integer references requirements (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  -- Order shows how it is to be displayed on the page
+  req_order       integer,
+  -- Number shows the requirement number to be displayed
+  req_number      varchar(3)
 );
 
 CREATE TABLE public.scout_requirements

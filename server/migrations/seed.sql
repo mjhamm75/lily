@@ -363,17 +363,17 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Successfully complete an Eagle Scout board of review. In preparation for your board of review, prepare and attach to your Eagle Scout Rank Application a statement of your ambitions and life purpose and a listing of positions held in your religious institution, school, camp, community, or other organizations, during which you demonstrated leadership skills. Include honors and awards received during this service.', 147);
 
 -- Boy Scout
-INSERT INTO advancement_requirements(advancement_id, requirement_id) VALUES
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 1 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 2 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 3 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 4 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 5 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 6 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 7 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 8 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 9 ),
-    ((SELECT id FROM advancements where name = 'Boy Scout'), 10 );
+INSERT INTO advancement_requirements(advancement_id, requirement_id, req_order, req_number) VALUES
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 1, 1, 1 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 2, 2, 2 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 3, 3, 3 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 4, 4, 4 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 5, 5, 5 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 6, 6, 6 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 7, 7, 7 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 8, 8 ,8  ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 9, 9, 9 ),
+    ((SELECT id FROM advancements where name = 'Boy Scout'), 10, 10, 10 );
 
 -- Tenderfoot
 INSERT INTO advancement_requirements(advancement_id, requirement_id) VALUES
