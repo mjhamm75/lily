@@ -3,7 +3,7 @@
 app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, advancementService, requirementsService, scoutService) {
 
   if($routeParams.id && advancementService.advancement === undefined) {
-    advancementService.getAdvancement($routeParams.id).then(function(data) {
+    advancementService.getAdvancement($routeParams.id, $routeParams.scoutId).then(function(data) {
       $scope.advancement = data;
     });
   }

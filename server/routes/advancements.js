@@ -21,7 +21,7 @@ exports.getRequirements = function(req, res) {
     })
     .then(function(advancementReqs) {
       var reqIds = _.pluck(advancementReqs, 'id');
-      getScoutRequirements(1, reqIds, function(scoutRequirements) {
+      getScoutRequirements(req.query.scoutId, reqIds, function(scoutRequirements) {
         var result = common.combineRequirementsWithScoutRequirements(advancementReqs, scoutRequirements);
         res.json(result);
       });

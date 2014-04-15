@@ -8,11 +8,15 @@ app.factory('advancementService', function($resource, $q) {
         isArray: true
       }
     }),
-    getAdvancement: function(id) {
+    getAdvancement: function(id, scoutId) {
       var deferred = $q.defer();
       var that = this;
       if(that.advancement === undefined || that.advancement.id !== id) {
-        that._getResource.get({advancementId: id}, function(data) {
+        that._getResource.get(
+          {
+            advancementId: id,
+            scoutId: scoutId
+          }, function(data) {
           that.advancement = data;
           deferred.resolve(that.advancement);
         });
