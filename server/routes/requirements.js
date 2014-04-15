@@ -20,7 +20,6 @@ exports.toggleRequirement = function(req, res) {
         res.json(data);
       });
     } else {
-      console.log('KNEX');
       Bookshelf.knex('scout_requirements')
         .where('scout_id', '=', req.body.scoutId)
         .where('requirement_id', '=', req.body.requirementId)
