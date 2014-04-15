@@ -23,11 +23,13 @@ exports.toggleRequirement = function(req, res) {
     });
     if(scoutRequirement === undefined) {
 
-      var scoutRequirement = new ScoutRequirement();
-      scoutRequirement.set('requirement_id', req.body.requirementId);
-      scoutRequirement.set('scout_id', req.body.scoutId);
-      scoutRequirement.set('initials', 'mjh');
-      scoutRequirement.set('completed_date', '2014-04-09');
+      var scoutRequirement = new ScoutRequirement({
+        requirement_id: req.body.requirementId,
+        scout_id: req.body.scoutId,
+        initials: 'mjh',
+        completed_date: '2014-04-10'
+      });
+
       scoutRequirement.save().then(function(data) {
         res.json(data);
       });
