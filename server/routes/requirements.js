@@ -8,15 +8,15 @@ var ScoutRequirements = Bookshelf.Model.extend({
 });
 
 exports.toggleRequirement = function(req, res) {
-  var scoutRequirements = new ScoutRequirements({
+  var scoutRequirement = new ScoutRequirements({
     scout_id: req.body.scoutId,
     requirement_id: req.body.requirementId,
   });
-  scoutRequirements.fetch().then(function(data) {
+  scoutRequirement.fetch().then(function(data) {
     if(data === null) {
-      scoutRequirements.set('initials', 'mjh');
-      scoutRequirements.set('completed_date', '2014-04-09');
-      scoutRequirements.save().then(function(data) {
+      scoutRequirement.set('initials', 'mjh');
+      scoutRequirement.set('completed_date', '2014-04-09');
+      scoutRequirement.save().then(function(data) {
         res.json(data);
       });
     } else {
