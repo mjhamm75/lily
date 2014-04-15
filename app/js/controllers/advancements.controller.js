@@ -2,11 +2,9 @@
 
 app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, advancementService, requirementsService, scoutService) {
 
-  if($routeParams.id && advancementService.advancement === undefined) {
-    advancementService.getAdvancement($routeParams.id, $routeParams.scoutId).then(function(data) {
-      $scope.advancement = data;
-    });
-  }
+  advancementService.getAdvancement($routeParams.id, $routeParams.scoutId).then(function(data) {
+    $scope.advancement = data;
+  });
 
   $scope.completeRequirement = function(req) {
     requirementsService.updateRequirement(req.id, $routeParams.scoutId, function(data) {
