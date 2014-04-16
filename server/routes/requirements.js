@@ -42,12 +42,6 @@ exports.toggleRequirement = function(req, res) {
             deleted: true
           })
         });
-
-      // scoutRequirement.where().destroy().then(function(data) {
-      //   res.json({
-      //     deleted: true
-      //   })
-      // })
     }
   });
 }
