@@ -17,3 +17,10 @@ exports.combineRequirementsWithScoutRequirements = function(advancementRequireme
   });
   return result;
 };
+
+exports.getModelById = function(collection, id) {
+  var result = collection.find(function(model) {
+    return model.get('requirement_id') == id;
+  })
+  return result;
+};

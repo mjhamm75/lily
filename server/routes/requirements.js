@@ -2,6 +2,7 @@
 
 var Bookshelf = require('bookshelf').PG;
 var async = require('async');
+var common = require('../common/common.js');
 
 var ScoutRequirement = Bookshelf.Model.extend({
   tableName: 'scout_requirements',
@@ -44,13 +45,6 @@ var toggleScoutRequirement = function(requirementId, scoutId, scoutRequirement, 
   }
 };
 
-var getModelById = function(collection, id) {
-  var result = collection.find(function(model) {
-    return model.get('requirement_id') == id;
-  })
-  return result;
-};
-
 var getScoutRequirements = function(scoutId, callback) {
   var scoutRequirements = new ScoutRequirements();
   scoutRequirements.query({
@@ -86,7 +80,7 @@ exports.toggleRequirement = function(req, res) {
       })
     }
   }, function(err, result) {
-    var scoutRequirement = getModelById(result.scoutRequirements, req.params.id);
+    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.id);
     var result = toggleScoutRequirement(req.params.id, req.body.scoutId, scoutRequirement, function(data) {
       res.json(data);
     });
