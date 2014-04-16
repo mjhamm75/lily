@@ -34,13 +34,20 @@ exports.toggleRequirement = function(req, res) {
         res.json(data);
       });
     } else {
-      scoutRequirement.where({
-        requirement_id: red.body.requirementId
-      }).destroy().then(function(data) {
-        res.json({
-          deleted: true
-        })
-      })
+      Bookshelf.knex('scout_requirements')
+        .where('scout_id', req.body.scoutId)
+        .where('requirement_id', req.body.requirementId)
+        .del().then(function(data) {
+          res.json({
+            deleted: true
+          })
+        });
+
+      // scoutRequirement.where().destroy().then(function(data) {
+      //   res.json({
+      //     deleted: true
+      //   })
+      // })
     }
   });
 }
