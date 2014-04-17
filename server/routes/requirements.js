@@ -34,12 +34,14 @@ var toggleScoutRequirement = function(requirementId, scoutId, scoutRequirement, 
       callback(data);
     });
   } else {
+    var id = requirementId;
     Bookshelf.knex('scout_requirements')
       .where('scout_id', scoutId)
       .where('requirement_id', requirementId)
       .del().then(function(data) {
         callback({
-          deleted: true
+          requirement_id: id,
+          completed_date: null
         });
       });
   }
@@ -80,9 +82,12 @@ exports.toggleRequirement = function(req, res) {
       })
     }
   }, function(err, result) {
-    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.id, 'requirement_id');
-    toggleScoutRequirement(req.params.id, req.body.scoutId, scoutRequirement, function(result) {
-      res.json(result);
+    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.requirementId, 'requirement_id');
+    var advancementRequirement = common.getModelById(result.advancementRequirements, req.params.requirementId, 'requirement_id');
+    toggleScoutRequirement(req.params.requirementId, req.body.scoutId, scoutRequirement, function(result) {
+      var r = [];
+      r.push(result);
+      res.json(r);
     });
   });
 };
