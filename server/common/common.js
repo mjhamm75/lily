@@ -11,7 +11,6 @@ exports.combineRequirementsWithScoutRequirements = function(advancementRequireme
       a.completed_date = null;
       a.initials = null;
     }
-    delete a.internal_id;
     delete a.advancement_id;
     return a;
   });
