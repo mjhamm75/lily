@@ -7,12 +7,8 @@ app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, adv
   });
 
   $scope.completeRequirement = function(req) {
-    requirementsService.updateRequirement(req.id, $routeParams.scoutId, function(data) {
-      if(data.completed_date) {
-        req.completed_date = data.completed_date;
-      } else {
-        req.completed_date = null;
-      }
+    requirementsService.updateRequirements(req.id, $routeParams.scoutId, $routeParams.id,  function(req) {
+      advancementService.updateAdvancementRequirements(req);
     });
   };
 });
