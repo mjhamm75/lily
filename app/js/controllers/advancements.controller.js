@@ -2,8 +2,8 @@
 
 app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, advancementService, requirementsService, scoutService) {
 
-  advancementService.getAdvancement($routeParams.id, $routeParams.scoutId).then(function(data) {
-    $scope.advancement = data;
+  advancementService.getAdvancementRequirements($routeParams.id, $routeParams.scoutId).then(function(data) {
+    $scope.advancementRequirements = data;
   });
 
   $scope.completeRequirement = function(req) {
