@@ -2,26 +2,26 @@
 
 app.factory('advancementService', function($resource, $q) {
   return {
-    advancement: undefined,
+    advancementRequirements: undefined,
     _getResource: $resource('../advancements/:advancementId', {advancementId: '@advancementId'}, {
       get: {
         isArray: true
       }
     }),
-    getAdvancement: function(id, scoutId) {
+    getAdvancementRequirements: function(id, scoutId) {
       var deferred = $q.defer();
       var that = this;
-      if(that.advancement === undefined || that.advancement.id !== id) {
+      if(that.advancementRequirements === undefined || that.advancementRequirements.id !== id) {
         that._getResource.get(
           {
             advancementId: id,
             scoutId: scoutId
           }, function(data) {
-          that.advancement = data;
-          deferred.resolve(that.advancement);
+          that.advancementRequirements = data;
+          deferred.resolve(that.advancementRequirements);
         });
       } else {
-        deferred.resolve(that.advancement);
+        deferred.resolve(that.advancementRequirements);
       }
       return deferred.promise;
     }
