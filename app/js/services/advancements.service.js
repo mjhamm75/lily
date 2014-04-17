@@ -24,6 +24,14 @@ app.factory('advancementService', function($resource, $q) {
         deferred.resolve(that.advancementRequirements);
       }
       return deferred.promise;
-    }
+    },
+    updateAdvancementRequirements: function(reqs) {
+      var that = this;
+      _.each(reqs, function(req) {
+        var index = parseInt(req.requirement_id);
+        var r = _.findWhere(that.advancementRequirements, { requirement_id: index })
+        r.completed_date = req.completed_date;
+      });
+    },
   };
 });
