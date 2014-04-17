@@ -195,7 +195,7 @@ INSERT INTO scout_advancements(scout_id, advancement_id) VALUES
     (5, (SELECT advancements.id FROM advancements WHERE advancements.name = 'Eagle'));
 
 -- Boy Scout
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Meet the age requirements. Be a boy who is 11 years old, or one who has completed the fifth grade or earned the Arrow of Light Award and is at least 10 years old, but is not yet 18 years old.', 1),
     ('Find a Scout troop near your home.', 2),
     ('Complete a Boy Scout application and health history signed by your parent or guardian.', 3),
@@ -208,7 +208,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Participate in a Scoutmaster conference. Turn in your Boy Scout application and health history form signed by your parent or guardian, then participate in a Scoutmaster conference.', 10);
 
 -- Tenderfoot
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Present yourself to your leader, properly dressed, before going on an overnight camping trip. Show the camping gear you will use. Show the right way to pack and carry it.', 11),
     ('Spend at least one night on a patrol or troop campout. Sleep in a tent you have helped pitch.', 12),
     ('On the campout, assist in preparing and cooking one of your patrol''s meals. Tell why it is important for each patrol member to share in meal preparation and cleanup, and explain the importance of eating together.', 13),
@@ -252,7 +252,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Complete your board of review.', 51);
 
 -- 2nd Class
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Do the following', 52),
     ('Demonstrate how a compass works and how to orient a map. Explain what map symbols mean.', 53),
     ('Using a compass and a map together, take a five-mile hike (or 10 miles by bike) approved by your adult leader and your parent or guardian.', 54),
@@ -292,7 +292,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Complete your board of review.', 88);
 
 -- First Class
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Demonstrate how to find directions during the day and at night without using a compass.', 89),
     ('Using a map and compass, complete an orienteering course that covers at least one mile and requires measuring the height and/or width of designated items (tree, tower, canyon, ditch, etc.)', 90),
     ('Since joining, have participated in 10 separate troop/patrol activities (other than troop/patrol meetings), three of which included camping overnight. Demonstrate the principles of Leave No Trace on these outings.', 91),
@@ -325,7 +325,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Complete your board of review.', 118);
 
 -- Star
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Be active in your unit (and patrol if you are in one) for at least four months as a First Class Scout.', 119),
     ('Demonstrate Scout spirit by living the Scout Oath and Scout Law in your everyday life.', 120),
     ('Earn six merit badges, including any four from the required list for Eagle.', 121),
@@ -335,7 +335,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Complete your board of review.', 125);
 
 -- Life
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Be active in your unit (and patrol if you are in one) for at least six months as a Star Scout.', 126),
     ('Demonstrate Scout spirit by living the Scout Oath and Scout Law in your everyday life.', 127),
     ('Earn five more merit badges (so that you have 11 in all), including any three more from the required list for Eagle.', 128),
@@ -353,7 +353,7 @@ INSERT INTO requirements(description, internal_id) VALUES
     ('Complete your board of review.', 140);
 
 -- Eagle
-INSERT INTO requirements(description, internal_id) VALUES
+INSERT INTO requirements(description, id) VALUES
     ('Be active in your troop, team, crew, or ship for a period of at least six months after you have achieved the rank of Life Scout.', 141),
     ('Demonstrate that you live by the principles of the Scout Oath and Scout Law in your daily life. List on your Eagle Scout Rank Application the names of individuals who know you personally and would be willing to provide a recommendation on your behalf, including parents/guardians, religious, educational, and employer references.', 142),
     ('Earn a total of 21 merit badges (10 more than you already have), including the following:', 143),

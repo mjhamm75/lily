@@ -36,8 +36,7 @@ CREATE TABLE public.scout_advancements
 CREATE TABLE public.requirements
 (
   id              serial primary key,
-  description     varchar(645),
-  internal_id     integer unique
+  description     varchar(645)
 );
 
 CREATE TABLE public.advancement_requirements
