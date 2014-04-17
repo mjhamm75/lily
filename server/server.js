@@ -15,7 +15,7 @@ app.get('/scouts', scouts.getScouts);
 app.post('/scouts', scouts.createScout);
 
 app.get('/advancements/:id', advancements.getRequirements);
-app.post('/requirements/:id', requirements.toggleRequirement);
+app.post('/requirements/:requirementId', requirements.toggleRequirement);
 
 app.get('*', function(req, res) {
   res.send("This would be some more HTML");
