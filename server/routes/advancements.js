@@ -15,7 +15,7 @@ var getScoutRequirements = function(scoutId, requirementsArray, callback) {
 
 exports.getRequirements = function(req, res) {
   Bookshelf.knex('requirements')
-    .join('advancement_requirements', 'requirements.internal_id', '=', 'advancement_requirements.requirement_id')
+    .join('advancement_requirements', 'requirements.id', '=', 'advancement_requirements.requirement_id')
     .where({
       'advancement_requirements.advancement_id': req.params.id
     })
