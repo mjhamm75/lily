@@ -80,9 +80,9 @@ exports.toggleRequirement = function(req, res) {
       })
     }
   }, function(err, result) {
-    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.id);
-    var result = toggleScoutRequirement(req.params.id, req.body.scoutId, scoutRequirement, function(data) {
-      res.json(data);
+    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.id, 'requirement_id');
+    toggleScoutRequirement(req.params.id, req.body.scoutId, scoutRequirement, function(result) {
+      res.json(result);
     });
   });
 };

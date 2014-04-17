@@ -18,9 +18,9 @@ exports.combineRequirementsWithScoutRequirements = function(advancementRequireme
   return result;
 };
 
-exports.getModelById = function(collection, id) {
+exports.getModelById = function(collection, id, idName) {
   var result = collection.find(function(model) {
-    return model.get('requirement_id') == id;
+    return model.get(idName) == id;
   })
   return result;
 };
