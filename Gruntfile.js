@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           hostname: '*',
-          port: '3000',
+          port: 3000,
           middleware: function() {
             return [proxySnippet];
           }
