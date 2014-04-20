@@ -46,7 +46,10 @@ CREATE TABLE public.advancement_requirements
   -- Order shows how it is to be displayed on the page
   req_order       integer,
   -- Number shows the requirement number to be displayed
-  req_number      varchar(3)
+  req_number      varchar(3),
+  parent            integer,
+  children          integer ARRAY,
+  children_needed integer
 );
 
 CREATE TABLE public.scout_requirements
