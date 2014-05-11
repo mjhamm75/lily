@@ -1,4 +1,4 @@
-/* global require, process*/
+/* global require, process, console*/
 
 var express = require('express');
 require('./config/bookshelf.js');
@@ -18,6 +18,7 @@ app.get('/advancements/:id', advancements.getRequirements);
 app.post('/requirements/:requirementId', requirements.toggleRequirement);
 
 app.get('*', function(req, res) {
+  'use strict';
   res.send("This would be some more HTML");
 });
 
