@@ -23,6 +23,7 @@ var AdvancementRequirements = Bookshelf.Collection.extend({
 });
 
 var toggleScoutRequirement = function(requirementId, scoutId, scoutRequirement, callback) {
+  'use strict';
   if(scoutRequirement === undefined) {
     var scoutRequirement = new ScoutRequirement({
       requirement_id: requirementId,
@@ -48,6 +49,7 @@ var toggleScoutRequirement = function(requirementId, scoutId, scoutRequirement, 
 };
 
 var getScoutRequirements = function(scoutId, callback) {
+  'use strict';
   var scoutRequirements = new ScoutRequirements();
   scoutRequirements.query({
     where: {
@@ -56,9 +58,10 @@ var getScoutRequirements = function(scoutId, callback) {
   }).fetch().then(function(data) {
     callback(data);
   });
-}
+};
 
 var getAdvancementRequirements = function(advancementId, callback) {
+  'use strict';
   var advancementRequirements = new AdvancementRequirements();
   advancementRequirements.query({
     where: {
@@ -70,20 +73,24 @@ var getAdvancementRequirements = function(advancementId, callback) {
 }
 
 exports.toggleRequirement = function(req, res) {
+  'use strict';
   async.parallel({
     scoutRequirements: function(callback) {
       getScoutRequirements(req.body.scoutId, function(data) {
-        callback(null, data)
+        callback(null, data);
       });
     },
     advancementRequirements: function(callback){
       getAdvancementRequirements(req.body.advancementId, function(data) {
         callback(null, data);
-      })
+      });
     }
   }, function(err, result) {
+    var scoutRequirementObject = common.combineRequirementsWithScoutRequirements(result.scoutRequirements, result.advancementRequirements);
+    console.log(scoutRequirementObject);
+
+
     var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.requirementId, 'requirement_id');
-    var advancementRequirement = common.getModelById(result.advancementRequirements, req.params.requirementId, 'requirement_id');
     toggleScoutRequirement(req.params.requirementId, req.body.scoutId, scoutRequirement, function(result) {
       var r = [];
       r.push(result);
