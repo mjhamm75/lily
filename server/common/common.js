@@ -2,6 +2,7 @@
 var _ = require('underscore');
 
 exports.combineRequirementsWithScoutRequirements = function(advancementRequirements, scoutRequirementsComplete) {
+  'use strict';
   var result = _.map(advancementRequirements, function(a) {
     var r = _.findWhere(scoutRequirementsComplete, {requirement_id: a.id });
     if(r) {
