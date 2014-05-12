@@ -22,8 +22,9 @@ exports.combineRequirementsWithScoutRequirements = function(advancementRequireme
 };
 
 exports.getModelById = function(collection, id, idName) {
-  var result = collection.find(function(model) {
-    return model.get(idName) == id;
-  })
+  'use strict';
+  var params = {};
+  params[idName] = parseInt(id);
+  var result = _.findWhere(collection, params);
   return result;
 };
