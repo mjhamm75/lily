@@ -6,6 +6,9 @@ exports.combineRequirementsWithScoutRequirements = function(advancementRequireme
   var result = _.map(advancementRequirements, function(a) {
     var r = _.findWhere(scoutRequirementsComplete, {requirement_id: a.id });
     if(r) {
+      a.parent,
+      a.children,
+      a.children_needed,
       a.completed_date = r.completed_date;
       a.initials = r.initials;
     } else {
