@@ -3,6 +3,7 @@
 var Bookshelf = require('bookshelf').PG;
 var async = require('async');
 var common = require('../common/common.js');
+var _ = require('underscore');
 
 var ScoutRequirement = Bookshelf.Model.extend({
   tableName: 'scout_requirements',
@@ -69,8 +70,22 @@ var getAdvancementRequirements = function(advancementId, callback) {
     }
   }).fetch().then(function(data) {
     callback(data);
-  })
-}
+  });
+};
+
+var getReqsToToggle = function(advancementRequirements, scoutRequirements, requirementId) {
+  'use strict';
+  var currentRequirement = common.getModelById(advancementRequirements, requirementId, 'requirement_id');
+  if(_.isNull(currentRequirement.parent)) {
+    var result = [];
+    result.push(currentRequirement);
+    return result;
+  } else {
+    var parent = common.getModelById(advancementRequirements, currentRequirement.parent, 'requirement_id');
+    var children = parent.children;
+    var childrenNeeded = parent.children_needed;
+  }
+};
 
 exports.toggleRequirement = function(req, res) {
   'use strict';
@@ -86,15 +101,12 @@ exports.toggleRequirement = function(req, res) {
       });
     }
   }, function(err, result) {
-    var scoutRequirementObject = common.combineRequirementsWithScoutRequirements(result.scoutRequirements, result.advancementRequirements);
-    console.log(scoutRequirementObject);
-
-
-    var scoutRequirement = common.getModelById(result.scoutRequirements, req.params.requirementId, 'requirement_id');
-    toggleScoutRequirement(req.params.requirementId, req.body.scoutId, scoutRequirement, function(result) {
-      var r = [];
-      r.push(result);
-      res.json(r);
-    });
+    // var scoutRequirement = common.getModelById(result.scoutRequirements.toJSON(), req.params.requirementId, 'requirement_id');
+    var reqs = getReqsToToggle(result.advancementRequirements.toJSON(), result.scoutRequirements.toJSON(), req.params.requirementId);
+    // toggleScoutRequirement(req.params.requirementId, req.body.scoutId, scoutRequirement, function(result) {
+    //   var r = [];
+    //   r.push(result);
+    //   res.json(r);
+    // });
   });
 };
