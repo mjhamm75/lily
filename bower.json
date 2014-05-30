@@ -7,7 +7,7 @@
     "angular-resource": "~1.2.14"
   },
   "devDependencies": {
-    "jquery": "~2.0.3",
+    "jquery": "~2.1.1",
     "underscore": "~1.5.2",
     "backbone": "~1.1.0",
     "text": "~2.0.10",
