@@ -2,7 +2,6 @@
 
 var Bookshelf = require('bookshelf').PG;
 var async = require('async');
-var common = require('../common/common.js');
 var _ = require('underscore');
 
 var ScoutRequirement = Bookshelf.Model.extend({
@@ -26,14 +25,14 @@ var AdvancementRequirements = Bookshelf.Collection.extend({
 var toggleScoutRequirement = function(scoutId, scoutRequirement, advancementRequirement, callback) {
   'use strict';
   if(scoutRequirement === undefined) {
-    var scoutRequirement = new ScoutRequirement({
+    var scoutReq = new ScoutRequirement({
       requirement_id: advancementRequirement.requirement_id,
       scout_id: scoutId,
       initials: 'mjh',
       completed_date: '2014-04-10'
     });
-    scoutRequirement.save().then(function(data) {
-      callback(data);
+    scoutReq.save().then(function(data) {
+      callback(data.toJSON());
     });
   } else {
     var id = advancementRequirement.requirement_id;
@@ -43,20 +42,11 @@ var toggleScoutRequirement = function(scoutId, scoutRequirement, advancementRequ
       .del().then(function() {
         callback({
           requirement_id: id,
-          completed_date: null
+          completed_date: null,
+          initials: null
         });
       });
   }
-};
-
-var toggleScoutRequirements = function(advancementReqs, scoutReqs, scoutId) {
-  'use strict';
-  async.each(advancementReqs, function(req, callback) {
-    var scoutReq = _.findWhere(scoutReqs, { requirement_id: req.requirement_id });
-    toggleScoutRequirement(scoutId, scoutReq, req, function(data) {
-      callback();
-    });
-  });
 };
 
 var getScoutRequirements = function(scoutId, callback) {
@@ -83,40 +73,85 @@ var getAdvancementRequirements = function(advancementId, callback) {
   });
 };
 
-var getChildrenComplete = function(children, scoutRequirements) {
+var getChildrenComplete = function(scoutId, children, callback) {
   'use strict';
-  var count = 0;
-  _.each(children, function(child) {
-    var req = _.findWhere(scoutRequirements, { requirement_id: child});
-    if(req && req.completed_date) {
-      count = count + 1;
-    }
+  getScoutRequirements(scoutId, function(scoutReqs) {
+    var count = 0;
+    async.each(children, function(child, callback) {
+      var req = _.findWhere(scoutReqs.toJSON(), { requirement_id: child});
+      if(req && req.completed_date) {
+        count = count + 1;
+      }
+      callback();
+    }, function(err) {
+      if(!err) {
+        callback(count);
+      }
+    });
   });
-  return count;
 };
 
-var getReqsToToggle = function(advancementRequirements, scoutRequirements, requirementId, scoutId) {
-  'use strict';
-  var currentRequirement = common.getModelById(advancementRequirements, requirementId, 'requirement_id');
-  var result = [];
-  if(_.isNull(currentRequirement.parent)) {
-    if(currentRequirement.children) {
-      // Do nothing
-      console.log('A parent - DO NOTHING');
-    } else {
-      console.log('SINGLE');
-      result.push(currentRequirement);
-      return result;
-    }
-  } else {
-    console.log('CHILD');
-    toggleScoutRequirement(requirementId, scoutId, scoutRequirement, function() {
+// var isSingle = function(req) {
+//   'use strict';
+//   return _.isNull(req.parent) && _.isNull(req.children);
+// };
 
+var isParent = function(req) {
+  'use strict';
+  return !_.isNull(req.children);
+};
+
+var isChild = function(req) {
+  'use strict';
+  return !_.isNull(req.parent);
+};
+
+var toggleCurrentRequirement = function(scoutId, reqId, scoutReqs, advancementReqs, callback) {
+  'use strict';
+  var id = parseInt(reqId);
+  var advancementReq = _.findWhere(advancementReqs, {requirement_id: id});
+  var scoutReq = _.findWhere(scoutReqs, {requirement_id: id});
+  if(!isParent(advancementReq)) {
+    toggleScoutRequirement(scoutId, scoutReq, advancementReq, function(data) {
+      callback(data);
     });
-    var parent = common.getModelById(advancementRequirements, currentRequirement.parent, 'requirement_id');
-    var children = parent.children;
-    var childrenNeeded = parent.children_needed;
-    var childrenCompleteCount = getChildrenComplete(children, scoutRequirements);
+  }
+};
+
+var toggleCurrentParent = function(scoutId, reqId, scoutReqs, advancementReqs, callback) {
+  'use strict';
+  var current_id = parseInt(reqId);
+  var advancementReq = _.findWhere(advancementReqs, {requirement_id: current_id});
+  if(isChild(advancementReq)) {
+    var parent_id = parseInt(advancementReq.parent);
+    var parentReq = _.findWhere(advancementReqs, {requirement_id: parent_id });
+    var children_needed = parentReq.children_needed;
+    getChildrenComplete(scoutId, parentReq.children, function(children_complete) {
+      if(children_needed === children_complete) {
+        var scoutReq = new ScoutRequirement({
+          requirement_id: parentReq.requirement_id,
+          scout_id: scoutId,
+          initials: 'mjh',
+          completed_date: '2014-04-10'
+        });
+        scoutReq.save().then(function(data) {
+          callback(data.toJSON());
+        });
+      } else {
+        var id = parentReq.requirement_id;
+          Bookshelf.knex('scout_requirements')
+            .where('scout_id', scoutId)
+            .where('requirement_id', id)
+            .del().then(function() {
+              callback({
+                requirement_id: id,
+                completed_date: null
+              });
+            });
+      }
+    });
+  } else {
+    callback();
   }
 };
 
@@ -134,13 +169,24 @@ exports.toggleRequirement = function(req, res) {
       });
     }
   }, function(err, result) {
-    var advancementReqs = getReqsToToggle(result.advancementRequirements.toJSON(), result.scoutRequirements.toJSON(), req.params.requirementId, req.body.scoutId);
-    toggleScoutRequirements(advancementReqs, result.scoutRequirements.toJSON(), req.body.scoutId);
-
-    // toggleScoutRequirement(req.params.requirementId, req.body.scoutId, scoutRequirement, function(result) {
-    //   var r = [];
-    //   r.push(result);
-    //   res.json(r);
-    // });
+    async.series({
+      currentReq: function(callback) {
+        toggleCurrentRequirement(req.body.scoutId, req.params.requirementId, result.scoutRequirements.toJSON(), result.advancementRequirements.toJSON(), function(data) {
+          callback(null, data);
+        });
+      },
+      parentReq: function(callback) {
+        toggleCurrentParent(req.body.scoutId, req.params.requirementId, result.scoutRequirements.toJSON(), result.advancementRequirements.toJSON(), function(data) {
+          callback(null, data);
+        });
+      }
+    }, function(err, result) {
+      var r = [];
+      r.push(result.currentReq);
+      if(result.parentReq) {
+        r.push(result.parentReq);
+      }
+      res.json(r);
+    });
   });
 };
