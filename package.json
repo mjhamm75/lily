@@ -23,7 +23,9 @@
     "grunt-open": "latest",
     "grunt-contrib-less": "~0.8.1",
     "grunt-connect-proxy": "~0.1.6",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "rdb": "^0.2.1",
+    "request": "^2.36.0"
   },
   "scripts": {
     "test": "grunt test --verbose"
