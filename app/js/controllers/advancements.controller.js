@@ -1,7 +1,7 @@
 /* global app */
 
-app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, advancementService, requirementsService, scoutService) {
-
+app.controller('AdvancementsCtrl', function($scope, $location, $routeParams, advancementService, requirementsService) {
+  'use strict';
   advancementService.getAdvancementRequirements($routeParams.id, $routeParams.scoutId).then(function() {
     $scope.advancementRequirements = advancementService.advancementRequirements;
   });
