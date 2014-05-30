@@ -22,11 +22,10 @@ var AdvancementRequirements = Bookshelf.Collection.extend({
   model: AdvancementRequirement
 });
 
-var toggleScoutRequirement = function(scoutId, scoutRequirement, advancementRequirement, callback) {
+var updateScoutRequirement = function(reqId, scoutId, callback) {
   'use strict';
-  if(scoutRequirement === undefined) {
-    var scoutReq = new ScoutRequirement({
-      requirement_id: advancementRequirement.requirement_id,
+  var scoutReq = new ScoutRequirement({
+      requirement_id: reqId,
       scout_id: scoutId,
       initials: 'mjh',
       completed_date: '2014-04-10'
@@ -34,18 +33,33 @@ var toggleScoutRequirement = function(scoutId, scoutRequirement, advancementRequ
     scoutReq.save().then(function(data) {
       callback(data.toJSON());
     });
-  } else {
-    var id = advancementRequirement.requirement_id;
-    Bookshelf.knex('scout_requirements')
+};
+
+var deleteScoutRequirement = function(reqId, scoutId, callback) {
+  'use strict';
+  Bookshelf.knex('scout_requirements')
       .where('scout_id', scoutId)
-      .where('requirement_id', id)
+      .where('requirement_id', reqId)
       .del().then(function() {
         callback({
-          requirement_id: id,
+          requirement_id: reqId,
           completed_date: null,
           initials: null
         });
       });
+};
+
+var toggleScoutRequirement = function(scoutId, scoutRequirement, advancementRequirement, callback) {
+  'use strict';
+  if(scoutRequirement === undefined) {
+    updateScoutRequirement(advancementRequirement.requirement_id, scoutId, function(data) {
+      callback(data);
+    });
+  } else {
+    var id = advancementRequirement.requirement_id;
+    deleteScoutRequirement(id, scoutId, function(data) {
+      callback(data);
+    });
   }
 };
 
@@ -128,26 +142,14 @@ var toggleCurrentParent = function(scoutId, reqId, scoutReqs, advancementReqs, c
     var children_needed = parentReq.children_needed;
     getChildrenComplete(scoutId, parentReq.children, function(children_complete) {
       if(children_needed === children_complete) {
-        var scoutReq = new ScoutRequirement({
-          requirement_id: parentReq.requirement_id,
-          scout_id: scoutId,
-          initials: 'mjh',
-          completed_date: '2014-04-10'
-        });
-        scoutReq.save().then(function(data) {
-          callback(data.toJSON());
+        updateScoutRequirement(parentReq.requirement_id, scoutId, function(data) {
+          callback(data);
         });
       } else {
         var id = parentReq.requirement_id;
-          Bookshelf.knex('scout_requirements')
-            .where('scout_id', scoutId)
-            .where('requirement_id', id)
-            .del().then(function() {
-              callback({
-                requirement_id: id,
-                completed_date: null
-              });
-            });
+        deleteScoutRequirement(id, scoutId, function(data) {
+          callback(data);
+        });
       }
     });
   } else {
