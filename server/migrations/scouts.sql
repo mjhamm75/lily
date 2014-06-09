@@ -23,14 +23,16 @@ CREATE TABLE public.advancements
   id              serial primary key,
   name            varchar(30),
   eagle_required  boolean,
-  type            advancement_type
+  type            advancement_type,
+  num_requirements    int
 );
 
 CREATE TABLE public.scout_advancements
 (
   scout_id        integer references scouts (id) ON UPDATE CASCADE ON DELETE CASCADE,
   advancement_id  integer references advancements (id) ON UPDATE CASCADE ON DELETE CASCADE,
-  date_complete   date
+  date_complete   date,
+  reqs_complete   int
 );
 
 CREATE TABLE public.requirements
