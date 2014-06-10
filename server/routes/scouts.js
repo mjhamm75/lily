@@ -20,46 +20,64 @@ var Scouts = Bookshelf.Collection.extend({
   model: Scout
 });
 
-
-var Advancements = Bookshelf.Model.extend({
-  model: Advancement
-});
-
 var organizeScoutJson = function(json) {
   'use strict';
-  json = json.toJSON();
-  var ranks = _.chain(json.advancements)
+  var first = _.first(json);
+  var result = {
+    scout_id: first.scout_id,
+    first_name: first.first_name,
+    last_name: first.last_name,
+    email: first.email,
+    password: first.password,
+    address: first.address,
+    city: first.city,
+    state: first.state,
+    zip: first.zip
+  };
+
+  var ranks = _.chain(json)
     .filter(function(advancement) {
       return advancement.type === 'Rank';
     })
     .map(function(r) {
-      delete r._pivot_scout_id;
-      delete r._pivot_advancement_id;
-      return r;
+      return {
+        advancement_id: r.advancement_id,
+        date_complete: r.date_complete,
+        num_requirements: r.num_requirements,
+        reqs_complete: r.reqs_complete,
+        name: r.name,
+        eagle_required: r.eagle_required
+      };
     })
     .value();
-  var merit_badges = _.chain(json.advancements)
+  var merit_badges = _.chain(json)
     .filter(function(advancement) {
       return advancement.type === 'Merit Badge';
     })
     .map(function(r) {
-      delete r._pivot_scout_id;
-      delete r._pivot_advancement_id;
-      return r;
+      return {
+        advancement_id: r.advancement_id,
+        date_complete: r.date_complete,
+        num_requirements: r.num_requirements,
+        reqs_complete: r.reqs_complete,
+        name: r.name,
+        eagle_required: r.eagle_required
+      };
     })
     .value();
-  delete json.advancements;
-  json.ranks = ranks;
-  json.merit_badges = merit_badges;
-  return json;
+  result.ranks = ranks;
+  result.merit_badges = merit_badges;
+  return result;
 };
 
 exports.getScout = function(req, res) {
   'use strict';
-  var scout = new Scout({id: req.params.id});
-  scout.fetch({
-    withRelated: ['advancements']
-  }).then(function(data) {
+  Bookshelf.knex('scouts')
+  .join('scout_advancements', 'scouts.id', '=', 'scout_advancements.scout_id')
+  .join('advancements', 'scout_advancements.advancement_id', '=', 'advancements.id')
+  .where('scouts.id', '=', 1)
+  .orderBy('advancements.id', 'asc')
+  .then(function(data) {
     var result = organizeScoutJson(data);
     res.json(result);
   });
