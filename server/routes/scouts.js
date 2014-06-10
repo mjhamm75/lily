@@ -75,7 +75,7 @@ exports.getScout = function(req, res) {
   Bookshelf.knex('scouts')
   .join('scout_advancements', 'scouts.id', '=', 'scout_advancements.scout_id')
   .join('advancements', 'scout_advancements.advancement_id', '=', 'advancements.id')
-  .where('scouts.id', '=', 1)
+  .where('scouts.id', '=', req.params.id)
   .orderBy('advancements.id', 'asc')
   .then(function(data) {
     var result = organizeScoutJson(data);
