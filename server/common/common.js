@@ -2,6 +2,10 @@
 var _ = require('underscore');
 var Bookshelf = require('bookshelf').PG;
 
+var Advancement = Bookshelf.Model.extend({
+  tableName: 'advancements'
+});
+
 var AdvancementRequirement = Bookshelf.Model.extend({
   tableName: 'advancement_requirements',
   idAttribute: null
@@ -57,6 +61,15 @@ exports.deleteScoutRequirement = function(reqId, scoutId, callback) {
           initials: null
         });
       });
+};
+
+exports.getAdvancements = function(advancementId, callback) {
+  'use strict';
+  var advancement = new Advancement({id: advancementId});
+  advancement.fetch().then(function(model) {
+    callback(model);
+  });
+
 };
 
 exports.getAdvancementRequirements = function(advancementId, callback) {
