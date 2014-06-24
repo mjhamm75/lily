@@ -63,6 +63,30 @@ var toggleCurrentRequirement = function(scoutId, reqId, scoutReqs, advancementRe
   }
 };
 
+var updateReqsCount = function(req) {
+    'use strict';
+    async.parallel({
+      scoutRequirements: function(callback) {
+        common.getScoutRequirements(req.body.scoutId, function(data) {
+          callback(null, data);
+        });
+      },
+      advancementRequirements: function(callback) {
+        common.getAdvancementRequirements(req.body.advancementId, function(data) {
+          callback(null, data);
+        });
+      },
+      advancements: function(callback) {
+        common.getAdvancements(req.body.advancementId, function(data) {
+          callback(null, data);
+        });
+      }
+    }, function(err, result) {
+      console.log(result);
+    });
+};
+
+
 var toggleCurrentParent = function(scoutId, reqId, scoutReqs, advancementReqs, callback) {
   'use strict';
   var current_id = parseInt(reqId);
@@ -114,6 +138,7 @@ exports.toggleRequirement = function(req, res) {
         });
       }
     }, function(err, result) {
+      updateReqsCount(req);
       var r = [];
       r.push(result.currentReq);
       if(result.parentReq) {
