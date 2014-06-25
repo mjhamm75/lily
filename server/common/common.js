@@ -87,7 +87,8 @@ exports.getAdvancementRequirements = function(advancementId, callback) {
 exports.combineRequirementsWithScoutRequirements = function(advancementRequirements, scoutRequirementsComplete) {
   'use strict';
   var result = _.map(advancementRequirements, function(a) {
-    var r = _.findWhere(scoutRequirementsComplete, {requirement_id: a.id });
+    var id = parseInt(a.requirement_id);
+    var r = _.findWhere(scoutRequirementsComplete, {requirement_id: id });
     if(r) {
       a.parent,
       a.children,
