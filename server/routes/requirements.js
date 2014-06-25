@@ -63,7 +63,7 @@ var toggleCurrentRequirement = function(scoutId, reqId, scoutReqs, advancementRe
   }
 };
 
-var updateReqsCount = function(req) {
+var updateReqsCount = function(req, callback) {
     'use strict';
     async.parallel({
       scoutRequirements: function(callback) {
@@ -75,14 +75,13 @@ var updateReqsCount = function(req) {
         common.getAdvancementRequirements(req.body.advancementId, function(data) {
           callback(null, data);
         });
-      },
-      advancements: function(callback) {
-        common.getAdvancements(req.body.advancementId, function(data) {
-          callback(null, data);
-        });
       }
     }, function(err, result) {
-      console.log(result);
+      var reqs = common.combineRequirementsWithScoutRequirements(result.advancementRequirements.toJSON(), result.scoutRequirements.toJSON());
+      var completed = _.filter(reqs, function(r) {
+        return r.completed_date !== null;
+      });
+      callback(completed.length);
     });
 };
 
@@ -138,13 +137,18 @@ exports.toggleRequirement = function(req, res) {
         });
       }
     }, function(err, result) {
-      updateReqsCount(req);
-      var r = [];
-      r.push(result.currentReq);
-      if(result.parentReq) {
-        r.push(result.parentReq);
-      }
-      res.json(r);
+      updateReqsCount(req, function(countComplete) {
+        var r = [];
+        r.push(result.currentReq);
+        if(result.parentReq) {
+          r.push(result.parentReq);
+        }
+        r.meta = {
+          countComplete: countComplete
+        };
+        console.log(r);
+        res.json(r);
+      });
     });
   });
 };
