@@ -1,6 +1,7 @@
-/* global app */
+/* global app, _ */
 
 app.factory('advancementService', function($resource, $q) {
+  'use strict';
   return {
     advancementRequirements: undefined,
     _getResource: $resource('../advancements/:advancementId', {advancementId: '@advancementId'}, {

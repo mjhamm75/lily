@@ -1,6 +1,7 @@
 /* global app */
 
-app.factory('requirementsService', function($resource, $q) {
+app.factory('requirementsService', function($resource) {
+  'use strict';
   return {
     _getResource: $resource('../requirements/:requirementId', {requirementId: '@requirementId'}, {
       save: {
