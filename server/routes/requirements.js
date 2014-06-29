@@ -139,14 +139,13 @@ exports.toggleRequirement = function(req, res) {
     }, function(err, result) {
       updateReqsCount(req, function(countComplete) {
         var r = [];
+        r.meta = {
+          countComplete: countComplete
+        };
         r.push(result.currentReq);
         if(result.parentReq) {
           r.push(result.parentReq);
         }
-        r.meta = {
-          countComplete: countComplete
-        };
-        console.log(r);
         res.json(r);
       });
     });
