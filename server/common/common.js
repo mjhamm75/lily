@@ -113,3 +113,15 @@ exports.getModelById = function(collection, id, idName) {
   var result = _.findWhere(collection, params);
   return result;
 };
+
+exports.updateReqsCount = function(scoutId, advancementId, countComplete) {
+  'use strict';
+  Bookshelf.knex('scout_advancements')
+    .where('scout_id', '=', scoutId)
+    .where('advancement_id', '=', advancementId)
+    .update({
+      'reqs_complete': countComplete
+    }).then(function(data) {
+      console.log(data);
+    });
+};

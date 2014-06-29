@@ -63,7 +63,7 @@ var toggleCurrentRequirement = function(scoutId, reqId, scoutReqs, advancementRe
   }
 };
 
-var updateReqsCount = function(req, callback) {
+var getReqsCompleteCount = function(req, callback) {
     'use strict';
     async.parallel({
       scoutRequirements: function(callback) {
@@ -137,7 +137,9 @@ exports.toggleRequirement = function(req, res) {
         });
       }
     }, function(err, result) {
-      updateReqsCount(req, function(countComplete) {
+      getReqsCompleteCount(req, function(countComplete) {
+        common.updateReqsCount(req.body.scoutId, req.body.advancementId, countComplete);
+
         var r = [];
         r.meta = {
           countComplete: countComplete
