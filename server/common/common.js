@@ -45,6 +45,7 @@ exports.updateScoutRequirement = function(reqId, scoutId, callback) {
       completed_date: '2014-04-10'
     });
     scoutReq.save().then(function(data) {
+      data.unset('null');
       callback(data.toJSON());
     });
 };
