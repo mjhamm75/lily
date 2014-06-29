@@ -121,7 +121,6 @@ exports.updateReqsCount = function(scoutId, advancementId, countComplete) {
     .where('advancement_id', '=', advancementId)
     .update({
       'reqs_complete': countComplete
-    }).then(function(data) {
-      console.log(data);
+    }).then(function() {
     });
 };
