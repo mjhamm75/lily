@@ -19,7 +19,7 @@ app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutServ
     $location.path('/' + scoutService.scout.scout_id + '/advancements/' + advancement.advancement_id);
   };
 
-  $scope.showFullDetail = function(scout, $event) {
+  $scope.showFullDetail = function(scout) {
     scoutService.getScout(scout.id).then(function(data) {
       $scope.scout = scoutService.scout = data;
     });
