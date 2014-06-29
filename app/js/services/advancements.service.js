@@ -4,12 +4,8 @@ app.factory('advancementService', function($resource, $q) {
   'use strict';
   return {
     advancementRequirements: undefined,
-    _getResource: $resource('../advancements/:advancementId', {advancementId: '@advancementId'}, {
-      get: {
-        isArray: true
-      }
-    }),
-    getAdvancementRequirements: function(id, scoutId) {
+    _getResource: $resource('../advancements/:advancementId', {advancementId: '@advancementId'}, {}),
+    getAdvancementDetails: function(id, scoutId) {
       var deferred = $q.defer();
       var that = this;
       if(that.advancementRequirements === undefined || that.advancementRequirements.id !== id) {
@@ -30,7 +26,7 @@ app.factory('advancementService', function($resource, $q) {
       var that = this;
       _.each(reqs, function(req) {
         var index = parseInt(req.requirement_id);
-        var r = _.findWhere(that.advancementRequirements, { requirement_id: index });
+        var r = _.findWhere(that.advancementRequirements.requirements, { requirement_id: index });
         r.completed_date = req.completed_date;
       });
     },

@@ -1,6 +1,6 @@
 /* global app */
 
-app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService) {
+app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutService, advancementService) {
   'use strict';
   scoutService.getScouts().then(function(data) {
     $scope.scouts = data;
@@ -16,6 +16,7 @@ app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutServ
   }
 
   $scope.showAdvancementDetail = function(advancement) {
+    advancementService.advancement = advancement;
     $location.path('/' + scoutService.scout.scout_id + '/advancements/' + advancement.advancement_id);
   };
 
