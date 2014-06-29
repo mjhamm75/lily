@@ -10,10 +10,8 @@ app.controller('ScoutsCtrl', function($scope, $location, $routeParams, scoutServ
 
   if($routeParams.id && scoutService.scout === undefined) {
     scoutService.getScout($routeParams.id).then(function(data) {
-      if(data.id) {
-        $scope.scoutValid = true;
-        $scope.scout = data;
-      }
+      $scope.scoutValid = true;
+      $scope.scout = data;
     });
   }
 
